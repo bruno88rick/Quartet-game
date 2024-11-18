@@ -13,10 +13,18 @@ struct ContentView: View {
     @State private var tiles = [String]()
     @State private var selectedTiles = [String]()
     
+    @State private var foundWords = [[String]]()
+    @State private var foundQuartiles = [String]()
+    
+    @State private var score = 0
+    
     let gridLayout = Array(repeating: GridItem.init(.flexible(minimum: 50, maximum: 100)), count: 4)
     
     var body: some View {
         VStack {
+            
+            WordsFoundView(words: foundWords)
+            
             HStack {
                 if selectedTiles.isEmpty {
                     SelectedTileView(text: "aa")
@@ -112,6 +120,14 @@ struct ContentView: View {
     }
     
     func submit() {
+        foundWords.append(selectedTiles)
+        score += selectedTiles.score
+        
+        if selectedTiles.count == 4 {
+            foundQuartiles.append(contentsOf: selectedTiles)
+        }
+        
+        selectedTiles.removeAll()
         
     }
     
