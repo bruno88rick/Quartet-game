@@ -11,7 +11,7 @@ struct QuartilesFoundView: View {
     var quartiles: Int
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
+        VStack(alignment: .center, spacing: 8) {
             Text("Quartiles")
                 .font(.body.bold())
             

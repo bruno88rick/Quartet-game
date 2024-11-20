@@ -7,6 +7,15 @@
 
 import SwiftUI
 
+enum levelsDescription: Int {
+    case basic = 2
+    case upperBasic = 5
+    case intermediate = 10
+    case upperIntermediate = 20
+    case advanced = 30
+    case upperAdvanced = 40
+}
+
 struct ContentView: View {
     let levels: [[String]] = Bundle.main.decode("levels.txt")
     
@@ -19,6 +28,9 @@ struct ContentView: View {
     @State private var isGroupingQuartiles = true
     
     @State private var score = 0
+    
+    @State private var isLevelTest = true
+    @State private var level = 0
     
     let gridLayout = Array(repeating: GridItem.init(.flexible(minimum: 50, maximum: 100)), count: 4)
     
@@ -154,12 +166,21 @@ struct ContentView: View {
         .font(.title.bold())
         .preferredColorScheme(.light)
         .task {
-            loadLevel()
+            if isLevelTest {
+                loadLevel()
+            } else {
+                loadLevelExam()
+            }
         }
     }
     
+    func loadLevelExam() {
+        isLevelTest.toggle()
+    }
+    
     func loadLevel() {
-        tiles = levels[0].shuffled()
+        
+        tiles = levels[level].shuffled()
         orderedTiles = tiles
     }
     

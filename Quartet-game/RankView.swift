@@ -11,7 +11,7 @@ struct RankView: View {
     var score:Int
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
+        VStack(alignment: .center, spacing: 8) {
             Text("Next Rank")
                 .font(.body.bold())
             

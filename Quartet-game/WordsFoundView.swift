@@ -73,7 +73,7 @@ struct WordsFoundView: View {
                                 
                                 Spacer()
                                 
-                                Text(String(words.score))
+                                Text(String(word.score))
                                     .padding(.horizontal)
                                     .foregroundStyle(.blue)
                             }
